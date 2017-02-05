@@ -14,8 +14,8 @@ class BachController extends Controller
 
 	function index(Request $req) {
 		$students = DB::table('students')->orderBy('id')->get()->toArray();
-		// dd($students);
-		return view('index', [ 'students' => $students]);
+		$subjects = DB::table('subjects')->orderBy('id')->get()->toArray();
+		return view('index', [ 'students' => $students, 'subjects' => $subjects]);
 	}
 
 	function student(Request $req, $student) {
@@ -26,6 +26,16 @@ class BachController extends Controller
 			->join('subjects', 'marks.subject_id', '=', 'subjects.id')
 			->get();
 		return view('student', [ 'marks' => $marks, 'student' => $student ]);
+	}
+
+	function subject(Request $req, $subject) {
+		$subject = DB::table('subjects')->where('id', $subject)->first();
+		if ($subject === null) abort(404);
+		$marks = DB::table('marks')
+			->where('subject_id', $subject->id)
+			->join('students', 'marks.student_id', '=', 'students.id')
+			->get();
+		return view('subject', [ 'marks' => $marks, 'subject' => $subject ]);
 	}
 
 	function fetch(Request $req) {

@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title',config('app.name', 'Laravel'))</title>
+    <title>@yield('title', config('app.name', 'Laravel'))</title>
 
     <!-- Styles -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -56,7 +56,7 @@
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Nhập mã sinh viên" id="txt">
                         </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
+                        <button type="submit" class="btn btn-default">Tra điểm</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="https://ngobach.com/">Visit me</a></li>
@@ -80,7 +80,7 @@
         $('#topForm').submit((e) => {
             e.preventDefault();
             let id = $('#txt').val();
-            top.location.href = '/' + id;
+            top.location.href = '/sinhvien/' + id;
         });
     </script>
 </body>

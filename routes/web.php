@@ -13,7 +13,8 @@
 
 Route::get('/', 'BachController@index');
 Route::get('/fetch','BachController@fetch');
-Route::get('/{id}', 'BachController@student');
+Route::get('/sinhvien/{id}', 'BachController@student')->name('sinhvien');
+Route::get('/monhoc/{id}', 'BachController@subject')->name('monhoc');
 
 // Auth::routes();
 
